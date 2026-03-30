@@ -155,7 +155,7 @@ const createET1Provider = () => ({
       ET1_BASE_URL + "/proxy_server/app/proctoring_started/",
       { method: "GET" },
       dataValidator,
-      "Failed to check if proctoring has started.",
+      "Failed to check proctoring status.",
       config
     );
   },
@@ -168,11 +168,11 @@ const createET1Provider = () => ({
         30000
       );
       if (!response.ok) {
-        throw new Error("Failed to close the Proctortrack App.");
+        throw new Error("Failed to close proctoring session.");
       }
-      return await response.json();
+      return { closing_proctoring: true };
     } catch {
-      throw new Error("Failed to close the Proctortrack App.");
+      throw new Error("Failed to close proctoring session.");
     }
   },
 });
@@ -208,7 +208,7 @@ const createET2Provider = () => ({
       url,
       options,
       dataValidator,
-      "Failed to check if proctoring has started.",
+      "Failed to check proctoring status.",
       RETRY_CONFIG,
       responseValidator
     );
@@ -238,14 +238,14 @@ const createET2Provider = () => ({
       if (is_et_online && is_proctoring_ended) {
         return { closing_proctoring: true };
       }
-      throw new Error("Failed to close the Proctortrack App.");
+      throw new Error("Failed to close proctoring session.");
     };
 
     return makeRequest(
       url,
       options,
       dataValidator,
-      "Failed to close the Proctortrack App.",
+      "Failed to close proctoring session.",
       RETRY_CONFIG,
       responseValidator
     );
@@ -312,16 +312,8 @@ const createFirebaseProvider = () => {
         let retryInterval = Math.floor(timeout / maxFailedAttemptCount);
 
         if (!sessionKey) {
-          console.log(
-            "Failed to check Proctortrack app status due to key error",
-            sessionKey
-          );
-          reject(
-            Error(
-              "Failed to check Proctortrack app status due to key error " +
-                sessionKey
-            )
-          );
+          console.error("Proctortrack: missing session key for status check");
+          reject(Error("Failed to check proctoring status."));
           return;
         }
         const sessionRef = database.ref(`/sessions/${sessionKey}`);
@@ -338,32 +330,22 @@ const createFirebaseProvider = () => {
                 sessionRef.once("value", onData, onError);
               }, retryInterval);
             } else if (is_et_online && !is_proctoring_started) {
-              console.log(
-                "Proctortrack app is running but proctoring hasn't started",
-                value
-              );
+              console.error("Proctortrack: proctoring hasn't started", value);
               reject(
                 Error(
-                  "Proctortrack app is running but proctoring hasn't started - " +
-                    JSON.stringify(value)
+                  "Proctortrack app is running but proctoring hasn't started."
                 )
               );
             } else {
-              console.log("Proctortrack app is not running", value);
-              reject(
-                Error("Proctortrack app is not running - " + JSON.stringify(value))
-              );
+              console.error("Proctortrack: app is not running", value);
+              reject(Error("Proctortrack app is not running."));
             }
           }
         };
 
         const onError = (error) => {
-          console.log("Failed to check Proctortrack app status", error);
-          reject(
-            Error(
-              "Failed to check Proctortrack app status - " + JSON.stringify(error)
-            )
-          );
+          console.error("Proctortrack: status check failed", error);
+          reject(Error("Failed to check proctoring status."));
         };
 
         sessionRef.once("value", onData, onError);
@@ -374,13 +356,8 @@ const createFirebaseProvider = () => {
       initPresenceAPI(sessionKey);
       return new Promise((resolve, reject) => {
         if (!sessionKey) {
-          console.log(
-            "Failed to close Proctortrack app due to key error",
-            sessionKey
-          );
-          reject(
-            Error("Failed to close Proctortrack app due to key error " + sessionKey)
-          );
+          console.error("Proctortrack: missing session key for close");
+          reject(Error("Failed to close proctoring session."));
           return;
         }
         const sessionRef = database.ref(`/sessions/${sessionKey}`);
@@ -391,20 +368,14 @@ const createFirebaseProvider = () => {
           if (is_exam_ended) {
             resolve({ closing_proctoring: true });
           } else {
-            console.log("Proctortrack app is not closed", value);
-            reject(
-              Error("Proctortrack app is not closed - " + JSON.stringify(value))
-            );
+            console.error("Proctortrack: app is not closed", value);
+            reject(Error("Failed to close proctoring session."));
           }
         };
 
         const onError = (error) => {
-          console.log("Failed to check Proctortrack close status", error);
-          reject(
-            Error(
-              "Failed to check Proctortrack close status - " + JSON.stringify(error)
-            )
-          );
+          console.error("Proctortrack: close status check failed", error);
+          reject(Error("Failed to close proctoring session."));
         };
 
         sessionRef
@@ -413,12 +384,8 @@ const createFirebaseProvider = () => {
             sessionRef.once("value", onData, onError);
           })
           .catch((error) => {
-            console.log("Failed to close the Proctortrack app", error);
-            reject(
-              Error(
-                "Failed to close the Proctortrack app - " + JSON.stringify(error)
-              )
-            );
+            console.error("Proctortrack: close request failed", error);
+            reject(Error("Failed to close proctoring session."));
           });
       });
     },
