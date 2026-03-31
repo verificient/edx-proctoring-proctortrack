@@ -4,7 +4,8 @@ const CONFIG = (() => {
   try {
     const raw = process.env.JS_ENV_EXTRA_CONFIG;
     return typeof raw === "string" ? JSON.parse(raw) : raw || {};
-  } catch {
+  } catch (error) {
+    console.error("Proctortrack: error parsing config", error);
     return {};
   }
 })();
@@ -171,7 +172,8 @@ const createET1Provider = () => ({
         throw new Error("Failed to close proctoring session.");
       }
       return { closing_proctoring: true };
-    } catch {
+    } catch (error) {
+      console.error("Proctortrack: error closing proctoring session", error);
       throw new Error("Failed to close proctoring session.");
     }
   },
