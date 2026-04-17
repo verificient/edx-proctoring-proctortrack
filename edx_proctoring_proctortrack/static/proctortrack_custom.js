@@ -12,7 +12,6 @@ const CONFIG = (() => {
 const CDN_URL = CONFIG.PROCTORTRACK_CDN_URL;
 const KEY = CONFIG.PROCTORTRACK_CONFIG_KEY;
 const PUBLIC_KEY_B64 = CONFIG.PROCTORTRACK_PUBLIC_KEY;
-const ET1_BASE_URL = "https://app.verificient.com:54545";
 const ET2_BASE_URL = "http://localhost:54545/a7f3e9d2c5b8/ptx/app";
 const RETRY_CONFIG = {
   maxRetries: 5,
@@ -135,49 +134,6 @@ async function makeRequest(url, options, dataValidator, errorMessage, config = R
     return attempt();
   });
 }
-
-const createET1Provider = () => ({
-  checkStatus(attemptId, timeout = 150000) {
-    const retryDelay = Math.floor(timeout / 5);
-    const config = { maxRetries: 5, retryDelay, timeoutDelay: retryDelay };
-
-    const dataValidator = (data) => {
-      if (data.proctoring) {
-        return { proctoring_started: true };
-      }
-      const err = new Error(
-        "Proctortrack app is running but proctoring hasn't started."
-      );
-      err.nonRetryable = true;
-      throw err;
-    };
-
-    return makeRequest(
-      ET1_BASE_URL + "/proxy_server/app/proctoring_started/",
-      { method: "GET" },
-      dataValidator,
-      "Failed to check proctoring status.",
-      config
-    );
-  },
-
-  async close() {
-    try {
-      const response = await fetchWithTimeout(
-        ET1_BASE_URL + "/proxy_server/app/close_proctoring",
-        { method: "GET" },
-        30000
-      );
-      if (!response.ok) {
-        throw new Error("Failed to close proctoring session.");
-      }
-      return { closing_proctoring: true };
-    } catch (error) {
-      console.error("Proctortrack: error closing proctoring session", error);
-      throw new Error("Failed to close proctoring session.");
-    }
-  },
-});
 
 const createET2Provider = () => ({
   checkStatus() {
@@ -401,7 +357,6 @@ const resolveProvider = () => {
   if (PUBLIC_KEY_B64) {
     return createET2Provider();
   }
-  return createET1Provider();
 };
 
 let provider;
