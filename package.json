@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/joshivj/edx-proctoring-proctortrack.git"
+    "url": "git+https://github.com/verificient/edx-proctoring-proctortrack.git"
   },
   "keywords": [
     "proctoring",
@@ -19,11 +19,11 @@
   "author": "",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/joshivj/edx-proctoring-proctortrack/issues"
+    "url": "https://github.com/verificient/edx-proctoring-proctortrack/issues"
   },
-  "homepage": "https://github.com/joshivj/edx-proctoring-proctortrack#readme",
+  "homepage": "https://github.com/verificient/edx-proctoring-proctortrack#readme",
   "peerDependencies": {
-    "@edx/edx-proctoring": "^4.8.1"
+    "@edx/edx-proctoring": "^4.18.1"
   },
   "publishConfig": {
     "access": "public"
