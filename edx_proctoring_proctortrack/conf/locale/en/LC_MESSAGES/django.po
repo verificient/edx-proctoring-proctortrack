@@ -1,0 +1,42 @@
+# Translations template for edx-proctoring-proctortrack.
+# Copyright (C) 2026 edX
+# This file is distributed under the same license as the
+# edx-proctoring-proctortrack project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: edx-proctoring-proctortrack VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-06-19 02:56+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: edx_proctoring_proctortrack/backends/proctortrack_rest.py:32
+msgid ""
+"Click on the \"Start System Check\" link below to download and run the "
+"proctoring software."
+msgstr ""
+
+#: edx_proctoring_proctortrack/backends/proctortrack_rest.py:33
+msgid ""
+"Once you have verified your identity and reviewed the exam guidelines in "
+"Proctortrack, you will be redirected back to this page."
+msgstr ""
+
+#: edx_proctoring_proctortrack/backends/proctortrack_rest.py:34
+msgid ""
+"To confirm that proctoring has started, make sure your webcam feed and "
+"the blue Proctortrack box are both visible on your screen."
+msgstr ""
+
+#: edx_proctoring_proctortrack/backends/proctortrack_rest.py:35
+msgid "Click on the \"Start Proctored Exam\" button below to continue."
+msgstr ""
+
