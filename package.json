@@ -1,6 +1,6 @@
 {
-  "name": "edx-proctoring-proctortrack",
-  "version": "1.1.1",
+  "name": "edx-proctoring-proctortrack-v2",
+  "version": "2.0.0",
   "description": "This is the proctortrack exam subsystem for the edx-proctoring.",
   "main": "edx_proctoring_proctortrack/static/proctortrack_custom.js",
   "scripts": {
@@ -16,7 +16,7 @@
     "verificient",
     "proctortrack"
   ],
-  "author": "",
+  "author": "pt-developer <developer@verificient.com>",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/verificient/edx-proctoring-proctortrack/issues"
