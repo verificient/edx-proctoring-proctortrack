@@ -5,7 +5,7 @@
 extract_translations: ## extract localizable strings from sources
 	pybabel extract -F edx_proctoring_proctortrack/conf/locale/babel_django.cfg \
 		-c "Translators:" \
-		--project=edx-proctoring-proctortrack \
+		--project=edx-proctoring-proctortrack-v2 \
 		--copyright-holder=edX \
 		-o edx_proctoring_proctortrack/conf/locale/en/LC_MESSAGES/django.po \
 		edx_proctoring_proctortrack

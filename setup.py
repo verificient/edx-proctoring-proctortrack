@@ -10,15 +10,16 @@ from setuptools import setup
 README = open(os.path.join(os.path.dirname(__file__), 'README.md')).read()
 
 setup(
-    name='edx-proctoring-proctortrack',
+    name='edx-proctoring-proctortrack-v2',
     description='Proctoring subsystem for edX-proctoring',
     long_description=README,
-    author='Verificient',
-    author_email='vivek@verificient.com',
-    url='https://github.com/joshivj/edx-proctoring-proctortrack',
+    author='pt-developer',
+    author_email='developer@verificient.com',
+    url='https://github.com/verificient/edx-proctoring-proctortrack',
     license="Apache-2.0",
     keywords='Proctortrack edx',
-    version='1.2.2',
+    version='2.0.0',
+    python_requires='>=3.11',
     packages=[
         'edx_proctoring_proctortrack',
     ],
@@ -32,13 +33,11 @@ setup(
         ],
     },
     classifiers=[
-        'Programming Language :: Python',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
+        'Framework :: Django',
+        'Intended Audience :: Education',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
-        'Programming Language :: Python :: Implementation :: CPython',
-        ],
+        'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
+        'Topic :: Education',
+    ],
 )
