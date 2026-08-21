@@ -17,7 +17,7 @@ This repository ships two packages:
 ## Requirements
 
 - Python 3.11+
-- Open edX with `edx-proctoring` installed
+- OpenEdX with `edx-proctoring` installed
 - Node.js (for npm package / webpack worker bundling at image build time)
 
 ## Install (packages only)
