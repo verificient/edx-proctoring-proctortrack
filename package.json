@@ -3,6 +3,11 @@
   "version": "2.0.1",
   "description": "This is the proctortrack exam subsystem for the edx-proctoring.",
   "main": "edx_proctoring_proctortrack/static/proctortrack_custom.js",
+  "files": [
+    "edx_proctoring_proctortrack/static",
+    "README.md",
+    "LICENSE.md"
+  ],
   "scripts": {
     "test": "echo \"WARNING: unimplemented\""
   },
