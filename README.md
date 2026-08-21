@@ -29,13 +29,13 @@ run these commands manually.
 ### PyPI
 
 ```bash
-pip install edx-proctoring-proctortrack-v2==2.0.0
+pip install edx-proctoring-proctortrack-v2==2.0.1
 ```
 
 ### npm
 
 ```bash
-npm install edx-proctoring-proctortrack-v2@2.0.0
+npm install edx-proctoring-proctortrack-v2@2.0.1
 ```
 
 ## Open edX integration

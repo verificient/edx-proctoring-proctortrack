@@ -1,6 +1,6 @@
 {
   "name": "edx-proctoring-proctortrack-v2",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "This is the proctortrack exam subsystem for the edx-proctoring.",
   "main": "edx_proctoring_proctortrack/static/proctortrack_custom.js",
   "scripts": {

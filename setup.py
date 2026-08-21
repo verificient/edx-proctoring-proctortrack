@@ -19,7 +19,7 @@ setup(
     url='https://github.com/verificient/edx-proctoring-proctortrack',
     license="Apache-2.0",
     keywords='Proctortrack edx',
-    version='2.0.0',
+    version='2.0.1',
     python_requires='>=3.11',
     packages=[
         'edx_proctoring_proctortrack',
