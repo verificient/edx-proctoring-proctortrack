@@ -13,6 +13,7 @@ setup(
     name='edx-proctoring-proctortrack-v2',
     description='Proctoring subsystem for edX-proctoring',
     long_description=README,
+    long_description_content_type='text/markdown',
     author='pt-developer',
     author_email='developer@verificient.com',
     url='https://github.com/verificient/edx-proctoring-proctortrack',
